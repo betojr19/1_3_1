@@ -7,39 +7,32 @@ import java.util.Date;
  *
  * @author Beto Jr
  */
-class EscucharBoton implements ActionListener{
-    JLabel etiqueta;
-    
-    public EscucharBoton (JLabel etiq){ 
-        this.etiqueta = etiq;
-    }
-    
-    public void actionPerfomed (ActionEvent e){
-        etiqueta.setText("Boton pulzado: " + new Date());
-    }
-}
-
-public class VentanaBoton extends JFrame{
+public class VentanaBotonEscuchar extends JFrame implements ActionListener{
     JPanel panelBoton;
     JLabel etiqueta;
     JButton boton;
     
-    public VentanaBoton(){
-        etiqueta = new JLabel();
-        panelBoton =new JPanel();
-        boton = new JButton("Pulsa aqui");
-        panelBoton.add(boton);
-        this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(etiqueta,"North");
-        this.getContentPane().add(panelBoton,"South");
-        EscucharBoton escuchar = new EscucharBoton(etiqueta);
-        boton.addActionListener(escuchar);
-        this.setSize(300,100);
-        this.setTitle("Ejemplo de un boton con Evento");
-        this.show();
+    public VentanaBotonEscuchar (){
+    etiqueta = new JLabel();
+    panelBoton = new JPanel();
+    boton = new JButton();
+    panelBoton.add(boton);
+    this.getContentPane().setLayout(new BorderLayout());
+    this.getContentPane().add(etiqueta, "North");
+    this.getContentPane().add(panelBoton, "South");
+    boton.addActionListener(this);
+    this.setSize(300,100);
+    this.setTitle("Ejemplo de un boton con Evento 2");
+    this.show();
+}
+    
+    @Override
+    public void actionPerformed(ActionEvent e){
+        etiqueta.setText("Boton pulsado: " + new Date());
     }
     
-    public static void main(String[] args ){
-        new VentanaBoton();
+    public static void main(String[] args){
+        new VentanaBotonEscuchar();
     }
+            
 }
